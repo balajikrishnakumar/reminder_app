@@ -1,0 +1,27 @@
+const locationDropdown = document.getElementById("location-dropdown");
+const reminderList = document.getElementById("reminder-list");
+
+// Mock reminders for each location
+const reminders = {
+  "Grocery Store": ["Buy Milk 🛒", "Pick Fruits 🍎", "Check Discounts 🏷️"],
+  "Pharmacy": ["Pick up Medicine 💊", "Check Prescription 📝"],
+  "Gym": ["Workout 🏋️", "Take Water Bottle 💧", "Do Stretching 🤸‍♂️"]
+};
+
+locationDropdown.addEventListener("change", () => {
+  const selectedLocation = locationDropdown.value;
+
+  reminderList.innerHTML = ""; // clear previous reminders
+
+  if(selectedLocation && reminders[selectedLocation]) {
+    reminders[selectedLocation].forEach(reminder => {
+      const li = document.createElement("li");
+      li.textContent = reminder;
+      reminderList.appendChild(li);
+    });
+  } else {
+    const li = document.createElement("li");
+    li.textContent = "Select a location to see reminders";
+    reminderList.appendChild(li);
+  }
+});
